@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
 import homeRoute from "./src/routes/home.js";
+import addRecRoute from "./src/routes/addRecipe.js";
 import { connectDB, db } from "./src/configs/db.js";
 
 
@@ -32,6 +33,7 @@ app.use(express.json());
 
 // Routes
 app.use("/", homeRoute);
+app.use("/", addRecRoute);
 
 // Running App
 app.listen(PORT, () => {
