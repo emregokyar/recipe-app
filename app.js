@@ -4,11 +4,10 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
 import homeRoute from "./src/routes/home.js";
-import addRecRoute from "./src/routes/addRecipe.js";
+import addRecRoute from "./src/routes/recipe.js";
 import { connectDB, db } from "./src/configs/db.js";
 
-
-// Setting up __dirname variable 
+// Setting up __dirname variable
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
