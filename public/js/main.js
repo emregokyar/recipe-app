@@ -46,6 +46,8 @@ async function submitRecipe() {
   formData.append("intro", $("#intro").val());
   formData.append("comment", $("#comment").val());
 
+  formData.append("dishId", $("#dish-id").val());
+
   fetch("/add", {
     method: "POST",
     body: formData,
@@ -61,4 +63,25 @@ async function submitRecipe() {
 $("form").on("submit", function (e) {
   e.preventDefault();
   submitRecipe();
+});
+
+$(".edit").on("click", function () {
+  let elemet = $(this).attr("id").split("-")[1];
+  let elementId = parseInt(elemet);
+  window.location.href = `/edit/${elementId}`;
+});
+
+$(".delete").on("click", function (e) {
+  let elemet = $(this).attr("id").split("-")[1];
+  let elementId = parseInt(elemet);
+
+  fetch(`/delete/${elementId}`, {
+    method: "DELETE",
+  }).then((response) => {
+    response.json().then((body) => {
+      if (body.redirectPath) {
+        window.location.href = body.redirectPath;
+      }
+    });
+  });
 });
