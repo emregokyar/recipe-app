@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:17.6
+    container_name: recipe-db
+    platform: linux/amd64
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: recipe
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./sql-scripts/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+    ports:
+      - "${DB_PORT}:5432"
+
+  app:
+    build: .
+    container_name: recipe-app
+    restart: always
+    platform: linux/amd64
+    env_file: .env
+    environment:
+      APP_PORT: ${APP_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_PORT: ${DB_PORT}
+      DB_HOST: db
+      DB_NAME: recipe
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    depends_on:
+      - db
+
+volumes:
+  db_data:

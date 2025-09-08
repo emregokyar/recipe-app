@@ -1,5 +1,3 @@
-CREATE DATABASE recipe;
-
 CREATE TABLE categories(
 	id SERIAL PRIMARY KEY,
 	category TEXT UNIQUE	
