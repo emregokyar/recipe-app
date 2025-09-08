@@ -71,6 +71,12 @@ $(".edit").on("click", function () {
   window.location.href = `/edit/${elementId}`;
 });
 
+$(".view").on("click", function () {
+  let elemet = $(this).attr("id").split("-")[1];
+  let elementId = parseInt(elemet);
+  window.location.href = `/view/${elementId}`;
+});
+
 $(".delete").on("click", function (e) {
   let elemet = $(this).attr("id").split("-")[1];
   let elementId = parseInt(elemet);

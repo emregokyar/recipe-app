@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import homeRoute from "./src/routes/home.js";
 import addRecRoute from "./src/routes/recipe.js";
+import viewRoute from "./src/routes/view.js";
 import { connectDB, db } from "./src/configs/db.js";
 
 // Setting up __dirname variable
@@ -33,6 +34,7 @@ app.use(express.json());
 // Routes
 app.use("/", homeRoute);
 app.use("/", addRecRoute);
+app.use("/", viewRoute);
 
 // Running App
 app.listen(PORT, () => {
